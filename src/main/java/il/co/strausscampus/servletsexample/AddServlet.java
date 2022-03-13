@@ -88,10 +88,8 @@ public class AddServlet extends HttpServlet {
      * @throws MissingOperandException if any of the required parameters is missing
      */
     private void validateParameters(Set<String> receivedParamNames) throws MissingOperandException {
-        for (String name : receivedParamNames) {
-            if (!(name.equals(PARAM_LEFT) || name.equals(PARAM_RIGHT))) {
-                throw new MissingOperandException(PARAM_LEFT, PARAM_RIGHT);
-            }
+        if (!receivedParamNames.contains(PARAM_LEFT) || !receivedParamNames.contains(PARAM_RIGHT)) {
+            throw new MissingOperandException(PARAM_LEFT, PARAM_RIGHT);
         }
 
         // Alternative syntax:
