@@ -13,6 +13,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="ServletsExample" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="glassfish.javax.json" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/ServletsExample-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />

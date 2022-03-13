@@ -2,6 +2,10 @@ package il.co.strausscampus.servletsexample;
 
 import il.co.strausscampus.servletsexample.exceptions.MissingOperandException;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonWriter;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -35,43 +39,42 @@ public class AddServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+        // = null;
         // Response headers
         response.setContentType("text/json");
 
         // Allowing React client side development on a different server:
         response.setHeader("Access-Control-Allow-Origin", "*");
 
-        // Response body
-        PrintWriter writer = response.getWriter();
 
-        try {
-            validateParameters(request.getParameterMap().keySet());
+        try (JsonWriter jsonw = Json.createWriter(response.getOutputStream())) {
 
-            int leftOperand = Integer.parseInt(request.getParameter("left"));
-            int rightOperand = Integer.parseInt(request.getParameter("right"));
+            try {
+                validateParameters(request.getParameterMap().keySet());
 
-            System.out.printf("Received params: %d, %d%n", leftOperand, rightOperand);
+                int leftOperand = Integer.parseInt(request.getParameter("left"));
+                int rightOperand = Integer.parseInt(request.getParameter("right"));
 
-            // If we got here with no exception, then everything is okay, and we can
-            // fulfill the request.
-            response.setStatus(HttpServletResponse.SC_OK);
+                System.out.printf("Received params: %d, %d%n", leftOperand, rightOperand);
 
-            // Here we write JSON manually just to simplify the example,
-            // usually we will use libraries to do that to avoid syntax error.
-            int result = leftOperand + rightOperand;
-            writer.printf("{\"result\":%d}%n", result);
+                // If we got here with no exception, then everything is okay, and we can
+                // fulfill the request.
+                response.setStatus(HttpServletResponse.SC_OK);
 
-            System.out.printf("Sent result %d%n", result);
+                // we should not write json strings manually, instead we should use the
+                // JsonObjectBuilder class.
+                int result = leftOperand + rightOperand;
+                jsonw.writeObject(buildJsonResponse("result", Integer.toString(result)));
+                //System.out.printf("Sent result %d%n", result);
 
-        } catch (NumberFormatException e) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            writer.println("{\"error\":\"operands must be integers\"}");
-        } catch (MissingOperandException e) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            writer.printf("{\"error\":%s}", e.getMessage());
-        } finally {
-            writer.flush();
-            writer.close();
+            } catch (NumberFormatException e) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                jsonw.writeObject(buildJsonResponse("error", "operands must be integers"));
+
+            } catch (MissingOperandException e) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                jsonw.writeObject(buildJsonResponse("error", e.getMessage()));
+            }
         }
     }
 
@@ -92,8 +95,16 @@ public class AddServlet extends HttpServlet {
         }
 
         // Alternative syntax:
-//        if (!Stream.of(PARAM_LEFT, PARAM_RIGHT).allMatch(receivedParamNames::contains)) {
-//            throw new MissingOperandException(PARAM_LEFT, PARAM_RIGHT);
-//        }
+        //if (!Stream.of(PARAM_LEFT, PARAM_RIGHT).allMatch(receivedParamNames::contains)) {
+        //    throw new MissingOperandException(PARAM_LEFT, PARAM_RIGHT);
+        //}
+    }
+
+    private JsonObject buildJsonResponse(String key, Object value) {
+        JsonObjectBuilder builder = Json.createObjectBuilder();
+        builder.add(key, value.toString());
+        return builder.build();
     }
 }
+
+
