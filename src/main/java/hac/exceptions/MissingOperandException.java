@@ -1,4 +1,4 @@
-package il.co.strausscampus.servletsexample.exceptions;
+package hac.exceptions;
 
 import java.util.Arrays;
 

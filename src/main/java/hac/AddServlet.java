@@ -1,18 +1,15 @@
-package il.co.strausscampus.servletsexample;
+package hac;
 
-import il.co.strausscampus.servletsexample.exceptions.MissingOperandException;
+import hac.exceptions.MissingOperandException;
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonWriter;
-import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Set;
-import java.util.stream.Stream;
 
 /**
  * This API endpoint (an endpoint is a function exposed by an API) receives two numbers and returns their sum.
