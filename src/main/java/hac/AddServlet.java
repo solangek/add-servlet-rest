@@ -47,7 +47,7 @@ public class AddServlet extends HttpServlet {
         try (JsonWriter jsonw = Json.createWriter(response.getOutputStream())) {
 
             try {
-                validateParameters(request.getParameterMap().keySet());
+                validateParameters(request.getParameterMap().keySet()); // convert params to set
 
                 int leftOperand = Integer.parseInt(request.getParameter("left"));
                 int rightOperand = Integer.parseInt(request.getParameter("right"));

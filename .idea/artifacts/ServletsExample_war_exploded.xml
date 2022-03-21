@@ -11,7 +11,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="ServletsExample" />
+          <element id="module-output" name="add-servlet-rest" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="glassfish.javax.json" />
