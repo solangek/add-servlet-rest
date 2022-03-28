@@ -61,6 +61,7 @@ public class AddServlet extends HttpServlet {
                 // we should not write json strings manually, instead we should use the
                 // JsonObjectBuilder class.
                 int result = leftOperand + rightOperand;
+
                 jsonw.writeObject(buildJsonResponse("result", Integer.toString(result)));
                 //System.out.printf("Sent result %d%n", result);
 
@@ -73,6 +74,13 @@ public class AddServlet extends HttpServlet {
                 jsonw.writeObject(buildJsonResponse("error", e.getMessage()));
             }
         }
+    }
+
+
+    // doPost does doGet - the client implements both
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        doGet(request, response);
     }
 
     /**
