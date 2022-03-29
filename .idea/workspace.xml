@@ -11,7 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ea3b92b7-20f6-4c5a-9e7c-f719ab67098c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/add-servlet-rest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/add-servlet-rest.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/hac/AddServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hac/AddServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -156,7 +155,9 @@
       <workItem from="1647972246617" duration="5000" />
       <workItem from="1647972316865" duration="1503000" />
       <workItem from="1648034734665" duration="1124000" />
-      <workItem from="1648471528816" duration="4456000" />
+      <workItem from="1648471528816" duration="6170000" />
+      <workItem from="1648570291193" duration="418000" />
+      <workItem from="1648571591766" duration="385000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some pb">
       <created>1647972875354</created>
@@ -165,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647972875354</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added POST request">
+      <created>1648481725432</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1648481725432</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +181,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed some pb" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed some pb" />
+    <MESSAGE value="added POST request" />
+    <option name="LAST_COMMIT_MESSAGE" value="added POST request" />
   </component>
 </project>

@@ -52,6 +52,11 @@ public class AddServlet extends HttpServlet {
                 int leftOperand = Integer.parseInt(request.getParameter("left"));
                 int rightOperand = Integer.parseInt(request.getParameter("right"));
 
+                // add cookie to response just for demo
+                Cookie cookie = new Cookie("test-cookie", "cookie-value");
+                cookie.setMaxAge(60 * 60 * 24 * 365); // 1 year
+                response.addCookie(cookie);
+
                 System.out.printf("Received params: %d, %d%n", leftOperand, rightOperand);
 
                 // If we got here with no exception, then everything is okay, and we can
