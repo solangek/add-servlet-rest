@@ -55,6 +55,10 @@ public class AddServlet extends HttpServlet {
                 // add cookie to response just for demo
                 Cookie cookie = new Cookie("test-cookie", "cookie-value");
                 cookie.setMaxAge(60 * 60 * 24 * 365); // 1 year
+                // allow javascript to read the cookie
+                cookie.setHttpOnly(false);
+                // set path to / to allow access from any path
+                cookie.setPath("/");
                 response.addCookie(cookie);
 
                 System.out.printf("Received params: %d, %d%n", leftOperand, rightOperand);
