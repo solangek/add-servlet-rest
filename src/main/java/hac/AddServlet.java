@@ -1,6 +1,8 @@
 package hac;
 
+import com.google.gson.Gson;
 import hac.exceptions.MissingOperandException;
+import org.ietf.jgss.GSSContext;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -9,6 +11,7 @@ import javax.json.JsonWriter;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -36,52 +39,51 @@ public class AddServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        // = null;
-        // Response headers
-        response.setContentType("text/json");
+        response.setContentType("application/json");
 
         // Allowing React client side development on a different server:
         response.setHeader("Access-Control-Allow-Origin", "*");
 
+        try {
+            validateParameters(request.getParameterMap());
 
-        try (JsonWriter jsonw = Json.createWriter(response.getOutputStream())) {
+            int leftOperand = Integer.parseInt(request.getParameter(PARAM_LEFT));
+            int rightOperand = Integer.parseInt(request.getParameter(PARAM_RIGHT));
 
-            try {
-                validateParameters(request.getParameterMap().keySet()); // convert params to set
+            // add cookie to response just for demo
+            Cookie cookie = new Cookie("test-cookie", "cookie-value");
+            cookie.setMaxAge(60 * 60 * 24 * 365); // 1 year
+            // allow javascript to read the cookie
+            cookie.setHttpOnly(false);
+            // set path to / to allow access from any path
+            cookie.setPath("/");
+            response.addCookie(cookie);
 
-                int leftOperand = Integer.parseInt(request.getParameter("left"));
-                int rightOperand = Integer.parseInt(request.getParameter("right"));
+            System.out.printf("Received params: %d, %d%n", leftOperand, rightOperand);
 
-                // add cookie to response just for demo
-                Cookie cookie = new Cookie("test-cookie", "cookie-value");
-                cookie.setMaxAge(60 * 60 * 24 * 365); // 1 year
-                // allow javascript to read the cookie
-                cookie.setHttpOnly(false);
-                // set path to / to allow access from any path
-                cookie.setPath("/");
-                response.addCookie(cookie);
+            // If we got here with no exception, then everything is okay, and we can
+            // fulfill the request.
+            response.setStatus(HttpServletResponse.SC_OK);
+            int result = leftOperand + rightOperand;
 
-                System.out.printf("Received params: %d, %d%n", leftOperand, rightOperand);
+            // convert result to json and send it to the client
+            Gson gson = new Gson();
+            String json = gson.toJson(new Result(result));
+            response.getWriter().write(json);
 
-                // If we got here with no exception, then everything is okay, and we can
-                // fulfill the request.
-                response.setStatus(HttpServletResponse.SC_OK);
+        } catch (NumberFormatException e) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write("operands must be integers");
 
-                // we should not write json strings manually, instead we should use the
-                // JsonObjectBuilder class.
-                int result = leftOperand + rightOperand;
+        } catch (MissingOperandException e) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.getWriter().write(e.getMessage());
+        }
+    }
 
-                jsonw.writeObject(buildJsonResponse("result", Integer.toString(result)));
-                //System.out.printf("Sent result %d%n", result);
-
-            } catch (NumberFormatException e) {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                jsonw.writeObject(buildJsonResponse("error", "operands must be integers"));
-
-            } catch (MissingOperandException e) {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                jsonw.writeObject(buildJsonResponse("error", e.getMessage()));
-            }
+    private void validateParameters(Map<String, String[]> parameterMap) throws MissingOperandException {
+        if (!parameterMap.containsKey(PARAM_LEFT) || !parameterMap.containsKey(PARAM_RIGHT)) {
+            throw new MissingOperandException(PARAM_LEFT, PARAM_RIGHT);
         }
     }
 
@@ -112,11 +114,18 @@ public class AddServlet extends HttpServlet {
         //}
     }
 
-    private JsonObject buildJsonResponse(String key, Object value) {
-        JsonObjectBuilder builder = Json.createObjectBuilder();
-        builder.add(key, value.toString());
-        return builder.build();
+//    private JsonObject buildJsonResponse(String key, Object value) {
+//        JsonObjectBuilder builder = Json.createObjectBuilder();
+//        builder.add(key, value.toString());
+//        return builder.build();
+//    }
+    class Result {
+        int result;
+        public Result(int result) {
+            this.result = result;
+        }
     }
 }
+
 
 

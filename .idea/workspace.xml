@@ -10,7 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea3b92b7-20f6-4c5a-9e7c-f719ab67098c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add-servlet-rest.iml" beforeDir="false" afterPath="$PROJECT_DIR$/add-servlet-rest.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/hac/AddServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hac/AddServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,27 +39,24 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="26keviB2oigIYkClY0GFJDLa0vt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="true" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.22528736" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "last_opened_file_path": "/Users/solangekarsenty/Documents/Teaching/Java-Spring/Weeks/Week-04/add-servlet-rest",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration name="Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.45" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER" value="false" />
@@ -166,7 +166,16 @@
       <workItem from="1648622868616" duration="2938000" />
       <workItem from="1648635107482" duration="1484000" />
       <workItem from="1648651002981" duration="2059000" />
-      <workItem from="1648758701685" duration="28000" />
+      <workItem from="1648758701685" duration="709000" />
+      <workItem from="1648975211143" duration="204000" />
+      <workItem from="1649229829870" duration="495000" />
+      <workItem from="1677962990179" duration="131000" />
+      <workItem from="1677963161901" duration="206000" />
+      <workItem from="1679318770411" duration="927000" />
+      <workItem from="1679428481702" duration="169000" />
+      <workItem from="1679470863170" duration="2299000" />
+      <workItem from="1679644921198" duration="767000" />
+      <workItem from="1679690493881" duration="3557000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some pb">
       <created>1647972875354</created>
@@ -189,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648571992398</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added more params to cookie to fix client side issues">
+      <created>1648758757763</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1648758757763</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,17 +215,22 @@
     <MESSAGE value="fixed some pb" />
     <MESSAGE value="added POST request" />
     <MESSAGE value="added a cookie to the response" />
-    <option name="LAST_COMMIT_MESSAGE" value="added a cookie to the response" />
+    <MESSAGE value="added more params to cookie to fix client side issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="added more params to cookie to fix client side issues" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/hac/AddServlet.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="1" />
+          <line>47</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
